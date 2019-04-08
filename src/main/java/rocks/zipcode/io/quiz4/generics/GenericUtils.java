@@ -8,11 +8,13 @@ import java.util.TreeSet;
  * @author leon on 11/12/2018.
  */
 public class GenericUtils {
-    public static <_ extends Comparable> Iterable<? extends Iterable<_>> powerSet(Set<_> originalSet) {
+    public static <SomeType extends Comparable> Iterable<? extends Iterable<SomeType>> powerSet(Set<SomeType> originalSet) {
+
+
         return null;
     }
 
-    public static <_ extends Comparable> Iterable<? extends Iterable<_>> powerSet(_... originalSet) {
+    public static <SomeType extends Comparable> Iterable<? extends Iterable<SomeType>> powerSet(SomeType... originalSet) {
         return powerSet(new TreeSet<>(Arrays.asList(originalSet)));
     }
 }
