@@ -8,13 +8,13 @@ import java.util.TreeSet;
  */
 public class    ComparableTreeSet<SomeType> extends TreeSet<SomeType> implements Comparable<SomeType> {
 
-    Set<SomeType> set;
+    private Set<SomeType> set;
 
 
     public ComparableTreeSet(SomeType... arr) {
         this.set = new TreeSet<SomeType>();
         for (SomeType s : arr) {
-            set.add(s);
+            this.set.add(s);
         }
     }
 
@@ -25,21 +25,27 @@ public class    ComparableTreeSet<SomeType> extends TreeSet<SomeType> implements
 
     public int compareTo(ComparableTreeSet<SomeType> o) {
 
-        boolean matches = true;
-        for (SomeType s : o) {
-            if(!set.contains(o)) {
-                matches = false;
-            }
-        }
+        String thisSet = toString();
+        String compareSet = o.toString();
 
-        if(matches == true) {
-            return 0;
-        }
-        return -1;
+        return thisSet.compareTo(compareSet);
     }
 
     @Override
     public int compareTo(SomeType o) {
+
         return 0;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder("[");
+        for (SomeType s : set) {
+            builder.append(s);
+            builder.append(", ");
+        }
+        String temp = builder.toString();
+        temp = temp.substring(0, temp.length()-2) + "]";
+        return temp;
     }
 }
